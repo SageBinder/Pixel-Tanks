@@ -20,6 +20,9 @@ func _physics_process(delta):
 			queue_free()
 		velocity = velocity.bounce(collision.normal)
 
-
 func _on_Area2D_area_entered(area):
 	queue_free()
+
+func set_color(color):
+	var rect = get_node("ColorRect")
+	rect.color = color

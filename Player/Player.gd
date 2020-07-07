@@ -1,7 +1,10 @@
 extends Tank
 
+func _ready():
+	.set_color(Color.blue)
 
 func _physics_process(delta):
+	._physics_process(delta)
 	
 	# Get the input vectors 
 	var input_velocity = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -14,13 +17,8 @@ func _physics_process(delta):
 	var dir = get_global_mouse_position() - global_position
 	point(dir)
 	if Input.is_action_just_pressed("left_mouse"):
-		shoot()
+		shoot_if_ready()
 
 	
 	#Move
 	move(input_velocity, input_angular_velocity, delta)
-
-	
-
-
-
