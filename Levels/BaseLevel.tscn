@@ -23,5 +23,5 @@ tile_data = PoolIntArray( 0, 0, 4, 1, 0, 196609, 2, 0, 196609, 3, 0, 196609, 4, 
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 144 )
-[connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="died" from="Player" to="Player" method="_on_Player_died"]
+[connection signal="died" from="Player" to="." method="_on_Player_died"]

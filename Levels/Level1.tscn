@@ -13,3 +13,4 @@ position = Vector2( 86.2136, 34.7684 )
 
 [node name="BrownTank" parent="." index="3" instance=ExtResource( 1 )]
 position = Vector2( 423.706, 246.731 )
+[connection signal="died" from="BrownTank" to="." method="_on_BrownTank_died"]

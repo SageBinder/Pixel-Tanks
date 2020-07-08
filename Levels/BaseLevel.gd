@@ -18,3 +18,8 @@ func _ready():
 
 func _on_Player_died():
 	get_tree().change_scene("res://MainMenu.tscn")
+
+
+
+func _on_BrownTank_died():
+	get_tree().change_scene("res://MainMenu.tscn")
