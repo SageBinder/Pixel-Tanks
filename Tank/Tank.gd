@@ -55,8 +55,10 @@ func move(input_velocity, input_angular_velocity, delta):
 	var tank_direction = Vector2.UP.rotated(rotation)
 	velocity = velocity.project(tank_direction)
 	
-	# Play animation
+	# Move
 	velocity = move_and_slide(velocity)
+	
+	# Play animation
 	animation_player.playback_speed = velocity.length() / MAX_SPEED
 	if velocity.dot(facing) > 0:
 		animation_player.play_backwards()
