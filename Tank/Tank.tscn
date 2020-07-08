@@ -29,7 +29,6 @@ script = ExtResource( 3 )
 position = Vector2( 0, 2 )
 texture = ExtResource( 1 )
 hframes = 3
-frame = 1
 
 [node name="BaseColor" type="ColorRect" parent="TankSprite"]
 margin_left = -5.0

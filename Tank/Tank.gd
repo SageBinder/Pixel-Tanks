@@ -17,17 +17,25 @@ var angular_velocity = 0
 var gun_dir = Vector2.UP
 var remaining_gun_cooldown = 0
 var color = Color.brown
+var facing = Vector2.ONE
 
 const reload_time = 2
 
 onready var gun = $TankSprite/Gun
-onready var animationPlayer = $AnimationPlayer
-onready var tankSprite = $TankSprite
+onready var animation_player = $AnimationPlayer
+onready var tank_sprite = $TankSprite
+
+func _ready():
+	animation_player.current_animation = "MoveForward"
+	animation_player.playback_speed = 0
+	animation_player.play()
 
 func _physics_process(delta):
 	if remaining_gun_cooldown > 0:
 		remaining_gun_cooldown -= delta
 		remaining_gun_cooldown = abs(clamp(remaining_gun_cooldown, 0, 2))
+		
+	facing = Vector2.ONE.rotated(rotation)
 
 func move(input_velocity, input_angular_velocity, delta):
 	# Set rotation with acceleration and friction.
@@ -47,8 +55,13 @@ func move(input_velocity, input_angular_velocity, delta):
 	var tank_direction = Vector2.UP.rotated(rotation)
 	velocity = velocity.project(tank_direction)
 	
-	# Move
+	# Play animation
 	velocity = move_and_slide(velocity)
+	animation_player.playback_speed = velocity.length() / MAX_SPEED
+	if velocity.dot(facing) > 0:
+		animation_player.play_backwards()
+	else:
+		animation_player.play()
 
 func point(dir):
 	gun_dir = dir
@@ -61,7 +74,7 @@ func shoot_if_ready():
 
 func shoot():
 	var b = bullet.instance()
-	b.start(tankSprite.global_position + 20 * gun_dir.normalized(), gun_dir.angle())
+	b.start(tank_sprite.global_position + 20 * gun_dir.normalized(), gun_dir.angle())
 	b.set_color(color)
 	get_parent().add_child(b)
 
