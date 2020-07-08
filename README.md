@@ -1,2 +1,2 @@
 # Pixel-Tanks
-A top down tank game in Godot I started but never finished or intend to finish. 
+A fork of https://github.com/MQ17/Pixel-Tanks, for my CSC230 final project.
